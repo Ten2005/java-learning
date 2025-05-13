@@ -101,7 +101,7 @@ public class AdventureGame {
         System.out.println("探索で疲れました。体力が10減少しました。");
 
         // ランダムイベントを生成
-        int event = random.nextInt(5);
+        int event = (int)(Math.random() * 5);
 
         switch (event) {
             case 0:
@@ -125,7 +125,7 @@ public class AdventureGame {
     // 休息するメソッド - 体力回復
     private void rest() {
         System.out.println("\n" + playerName + "は休憩をとっています...");
-        int recoveredHealth = random.nextInt(16) + 10; // 10〜25の範囲で回復
+        int recoveredHealth = (int)(Math.random() * 16) + 10; // 10〜25の範囲で回復
         int oldHealth = health;
         health += recoveredHealth;
         if (health > 100) {
@@ -138,7 +138,7 @@ public class AdventureGame {
 
     // 宝を見つけるメソッド
     private void findTreasure() {
-        int treasureValue = random.nextInt(11) + 5; // 5〜15の範囲
+        int treasureValue = (int)(Math.random() * 11) + 5; // 5〜15の範囲
         gold += treasureValue;
         totalTreasuresFound++; // クラス変数をインクリメント
 
@@ -150,7 +150,7 @@ public class AdventureGame {
             String answer = scanner.nextLine().toLowerCase();
 
             if (answer.equals("y")) {
-                int bonusGold = random.nextInt(21) + 10; // 10〜30の範囲
+                int bonusGold = (int)(Math.random() * 21) + 10; // 10〜30の範囲
                 gold += bonusGold;
                 hasKey = false; // 鍵を使用
 
@@ -163,7 +163,7 @@ public class AdventureGame {
     private void fightMonster() {
         System.out.println("モンスターに遭遇しました！");
 
-        int monsterPower = random.nextInt(21) + 5 * level; // レベルに応じた強さ
+        int monsterPower = (int)(Math.random() * 21) + 5 * level; // レベルに応じた強さ
         System.out.println("モンスターの強さ: " + monsterPower);
 
         System.out.println("1. 戦う");
@@ -173,12 +173,12 @@ public class AdventureGame {
 
         if (choice == 1) {
             // 戦う
-            int playerPower = random.nextInt(31) + 10 * level;
+            int playerPower = (int)(Math.random() * 31) + 10 * level;
             System.out.println("あなたの強さ: " + playerPower);
 
             if (playerPower >= monsterPower) {
                 // 勝利
-                int rewardGold = random.nextInt(16) + 5 * level;
+                int rewardGold = (int)(Math.random() * 16) + 5 * level;
                 gold += rewardGold;
                 level++;
 
@@ -186,7 +186,7 @@ public class AdventureGame {
                 System.out.println(rewardGold + "ゴールドを獲得し、レベルが" + level + "に上がりました！");
             } else {
                 // 敗北
-                int damage = random.nextInt(31) + 10;
+                int damage = (int)(Math.random() * 31) + 10;
                 health -= damage;
 
                 System.out.println("モンスターに敗北しました...");
@@ -194,7 +194,7 @@ public class AdventureGame {
             }
         } else {
             // 逃げる
-            int escapeDamage = random.nextInt(16) + 5;
+            int escapeDamage = (int)(Math.random() * 16) + 5;
             health -= escapeDamage;
             
             System.out.println("モンスターから逃げました！");
@@ -215,9 +215,9 @@ public class AdventureGame {
 
     // 回復ポーションを見つけるメソッド
     private void findHealingPotion() {
-        int healAmount = random.nextInt(21) + 10;
+        int healAmount = (int)(Math.random() * 21) + 10;
         health += healAmount;
-        if (health > 100) health = 100;
+        health = Math.min(health, 100);
 
         System.out.println("回復ポーションを見つけました！体力が" + healAmount + "回復しました。");
     }
